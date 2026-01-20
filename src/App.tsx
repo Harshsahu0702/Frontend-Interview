@@ -3,12 +3,10 @@ import { BlogList } from '@/pages/BlogList';
 import { BlogDetail } from '@/pages/BlogDetail';
 import { CreateBlog } from '@/pages/CreateBlog';
 import { Button } from '@/components/ui/button';
-import { PenSquare } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AnimatedBackground } from '@/components/AnimatedBackground';
-
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Search, Bell, Menu, User } from 'lucide-react';
+import { motion, useScroll } from 'framer-motion';
+import { Search, Bell, User, PenSquare } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 function Header() {
@@ -23,24 +21,18 @@ function Header() {
     });
   }, [scrollY]);
 
-  const headerVariants = {
-    hidden: { y: -100, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 20
-      }
-    }
-  };
-
   return (
     <motion.header
-      variants={headerVariants}
-      initial="hidden"
-      animate="visible"
+      initial={{ y: -100, opacity: 0 }}
+      animate={{
+        y: 0,
+        opacity: 1,
+        transition: {
+          type: "spring",
+          stiffness: 100,
+          damping: 20
+        }
+      }}
       className={cn(
         "sticky top-0 z-50 w-full px-4 md:px-8 py-4 transition-all duration-300",
         isScrolled ? "pt-2" : "pt-4"
